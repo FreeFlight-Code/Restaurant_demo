@@ -8,20 +8,20 @@ import logout from '../../images/logout.svg'
 class Drawer extends Component {
     render() {
         return(
-            <span id='drawer'>
+            <div id='drawer'>
 
                 <div>
                 <img id='logo' className='drawer' src={logo} alt='logo'></img>
-                    <div>
-
+                    
+                    <a href='/menu'><div>
                         <span>Menu</span>
                         <img className='drawer' src={menu} alt='logo'></img>
-                    </div>
-                    <div>
+                    </div></a>
+
+                    <a href='/cart' ><div>
                         <span>Cart</span>
                         <img className='drawer' src={cart} alt='logo'></img>
-
-                    </div>
+                    </div></a>
                 </div>
                 <a href='http://localhost:3030/auth/logout'>
                     <div>
@@ -29,7 +29,7 @@ class Drawer extends Component {
                         <img className='drawer' src={logout} alt='logo'></img>
                     </div>
                     </a>
-                </span>
+                </div>
         );
     }
 }

@@ -57,7 +57,29 @@ passport.use(new Auth0Strategy({
 
 
 }));
+/*******************************************************************************
+ * 
+ *      MY ENDPOINTS RESTFUL
+ * 
+ *******************************************************************************8*/
+const api = require('./api.js');
 
+app.get('/api/allproducts', api.allProducts)
+app.get('/api/product/:id', api.product)
+
+app.post('/api/product', api.addProduct)
+app.put('/api/product', api.editProduct)
+app.delete('/api/product/:id', api.deleteProduct)
+
+
+
+
+
+
+
+
+
+//*********************       LOGIN/AUTH ENDPOINTS       **********************************8 */
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {

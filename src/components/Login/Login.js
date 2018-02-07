@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import logo from '../../images/logo.svg';
-import './Login.css'; export default
-    class Login extends Component {
+import './Login.css'; 
+
+export default class Login extends Component {
     render() {
         return (
             <div className='App'>
                 <div id='loginContainer'>
                     <div id='logoSection'>
-                        <img src={logo} alt=""></img>
+                        <img src={logo} alt=""/>
                         <h4>Welcome to</h4>
                         <h2>Good Eats</h2>
                     </div>

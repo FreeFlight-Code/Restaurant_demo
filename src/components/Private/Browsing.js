@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './Browsing.css'
-import axios from 'axios';
+// import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserInfo } from './../../ducks/user';
+// import { getProducts } from './../../ducks/products';
+// import { cart } from './../../ducks/cart';
 import Drawer from './Drawer';
 
 class Browsing extends Component {
@@ -12,11 +14,22 @@ class Browsing extends Component {
     }
 
     render() {
+        const ProductList = ()=>{
+            if (this.props.user && this.props.user.user_name){
+            return <div>{this.props.user.user_name}</div>
+            } else {
+                return <div>Apple</div>
+            }
+        }
+        console.log('props', this.props);
+        // console.log(this.props.getUserInfo())
         return (
             <div id='Browsing'>
                 < Drawer />
-                <span id='yellowBackground'>
-
+                <span>
+                <div id='yellowBackground' >
+                {ProductList()}
+                </div>
                 </span>
             </div>
         )

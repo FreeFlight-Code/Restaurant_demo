@@ -22,6 +22,7 @@ font-family: 'Pacifico', cursive;
   /* padding: 3%; */
   box-sizing: border-box;
   opacity: .8;
+  box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, 0.555);
 }
 
 #logoSection, #right{
@@ -60,6 +61,8 @@ img {
   width: 100%;
   margin-bottom: 20px; 
   font-size: 2em;
+  font-weight: 100;
+  color:#020402
 }
 #right div>input{
   width:70%;
