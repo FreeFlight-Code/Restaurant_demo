@@ -11,27 +11,35 @@ import { getProducts } from './../../ducks/products';
 class Productlist extends Component {
     constructor(props) {
         super(props);
-        this.state={}
+        this.state={
+            products:[{name:"loading..."}]
+        }
         this.handleDetails = this.handleDetails.bind(this);
     }
 
     
-    componentDidMount() {
+    componentWillMount() {
         this.props.getProducts();
-        this.props.getUserInfo();
+
+    }
+
+    componentDidMount() {
+        this.setState({
+            products: this.props.products
+        })
+        
     }
     
 
-    handleDetails() {
-        console.log('clicked details')
+    handleDetails(e, i) {
+        console.log('clicked details', i)
     }
 
 
 
     render() {
-        console.log( this.props)
         const Productlist = () => {
-            if (this.props && this.props.products) {
+            if (this.props && this.props.products && this.props.products.length>0) {
                 return (this.props.products.map((el, i, a) => {
                     return <div
                         className='product'
@@ -39,26 +47,27 @@ class Productlist extends Component {
                     >
                         <img src={icon} alt='' />
                         <p>{el.name}</p>
-                        <button key={{ i } + 'button'} onClick={this.handleDetails}>Details</button>
+                        <button className='round-button' key={{ i } + 'button'} onClick={(e)=>{this.handleDetails(e, i)}}>Details</button>
                     </div>
                 }))
             } else {
-                console.log('error retrieving products...')
+                console.log('loading products...')
             }
         }
         return (
             <div id='yellowBackground'>
                 {Productlist()}
+                <button className='round-button' id='add-button'>Add</button>
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    console.log(state, 'state')
+    // console.log(state, 'props')
     return {
         user: state.user,
-        products: state.products
+        products: state.products.products
     }
 }
 
