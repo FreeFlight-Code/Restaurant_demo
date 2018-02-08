@@ -1,5 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
-import reducer from './ducks/user';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import userReducer from './ducks/user';
+import productReducer from './ducks/products';
 import promiseMiddleware from 'redux-promise-middleware';
 
-export default createStore(reducer, {}, applyMiddleware(promiseMiddleware()));
+const reducers = combineReducers({
+    user: userReducer,
+    products: productReducer
+})
+
+export default createStore(reducers, {}, applyMiddleware(promiseMiddleware()));

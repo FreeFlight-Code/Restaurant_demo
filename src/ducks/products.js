@@ -13,6 +13,7 @@ export function getProducts() {
     const products = axios.get('/api/allProducts').then( res => {
         return res.data
     })
+    console.log(products)
     return {
         type: GET_PRODUCTS,
         payload: products
@@ -20,7 +21,7 @@ export function getProducts() {
 }
 
 // reducer function
-export default function reducer(state = initialState, action) {
+export default function productReducer(state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS + '_FULFILLED':
             return Object.assign({}, state, { products: action.payload });
