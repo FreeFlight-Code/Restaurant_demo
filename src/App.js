@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
-import Private from './components/Private/Private';
+import Browsing from './components/Private/Browsing';
 
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
       <HashRouter>
         <div>
           <Route component={ Login } path='/' exact />
-          <Route component={ Private } path='/private' />
+          <Route component={ Browsing } path='/browsing' />
         </div> 
       </HashRouter>  
     );
