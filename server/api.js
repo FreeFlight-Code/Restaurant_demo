@@ -16,7 +16,7 @@ module.exports = {
     },
 //read product
     product: function (req, res, next){
-        let { productId } = req.params.id;
+        let  productId  = req.params.id;
         let db = req.app.get('db')
         db.product(productId).then(product=>{
             res.status(200).send(product)
@@ -26,7 +26,7 @@ module.exports = {
     editProduct: function (req, res, next){
         let { id, name, description, price } = req.body;
         let db = req.app.get('db')
-        db.product([id, name, description, price]).then(product=>{
+        db.editProduct([id, name, description, price]).then(product=>{
             res.status(200).send(true)
         }).catch((err)=>{
             res.status(400).send(err)
@@ -36,7 +36,7 @@ module.exports = {
     deleteProduct: function (req, res, next){
         let id = req.params.id;
         let db = req.app.get('db')
-        db.product(id).then(_=>{
+        db.deleteProduct(id).then(_=>{
             res.status(200).send(true)
         }).catch((err)=>{
             res.status(400).send(err)

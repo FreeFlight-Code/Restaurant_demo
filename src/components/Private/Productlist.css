@@ -1,0 +1,50 @@
+
+#yellowBackground{
+    background-color: #E5B642;
+    width: 70%;
+    max-height: 60vh;
+    margin: 7% 15% 0 15%;
+    opacity: .74;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.product{
+    height: 300px;
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+
+    
+}
+div.product{
+    width:100%;
+    padding: 35px;
+}
+.product img{
+    width: 50%;
+    margin: 0 auto;
+
+}
+.product p{
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top:45px;
+    /* margin-left:45px; */
+    /* box-sizing: border-box; */
+}
+
+.product button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 70px;
+    width:70px;
+    border-radius: 70px;
+    margin: 45px;
+
+}
