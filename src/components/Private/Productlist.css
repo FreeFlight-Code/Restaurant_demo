@@ -29,7 +29,7 @@ div.product{
     margin: 0 auto;
 
 }
-.product p{
+img+p{
     width: 50%;
     position: absolute;
     right: 0;

@@ -26,7 +26,7 @@ export default class Login extends Component {
                                 <button>Login</button>
                             </a>
                             <a href='http://localhost:3030/auth'>
-                                <button>Register</button>
+                                <button disabled >Register</button>
                             </a>
                         </div>
                     </div>

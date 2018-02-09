@@ -17,6 +17,12 @@ width:60%;
 margin: 0 auto;
 }
 
+div.rightSide{
+    width:50%;
+    float: right;
+    margin-right: 30px;
+}
+
 img.drawer{
     width: 40%;
     padding: 0;

@@ -65,6 +65,7 @@ passport.use(new Auth0Strategy({
 const api = require('./api.js');
 
 app.get('/api/allproducts', api.allProducts)
+app.get('/api/allproducts', api.allProducts)
 app.get('/api/product/:id', api.product)
 
 app.post('/api/product', api.addProduct)

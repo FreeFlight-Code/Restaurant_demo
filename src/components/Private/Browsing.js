@@ -14,6 +14,10 @@ const myName = {
 class Browsing extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            render: "Menu"
+
+        }
         this.giveMeInfo = this.giveMeInfo.bind(this)
     }
     
