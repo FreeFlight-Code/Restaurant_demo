@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import logo from '../../images/logo.svg';
 import './Login.css'; 
 
+
+var MegaButton = document.registerElement('mega-button', {
+    prototype: Object.create(HTMLButtonElement.prototype),
+    extends: 'button'
+  });
+
 export default class Login extends Component {
     render() {
         return (

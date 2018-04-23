@@ -11,6 +11,10 @@ color: #020402;
 font-family: 'Pacifico', cursive;
 }
 
+input:disabled {
+  background: #ccc;
+}
+
 #loginContainer{
   color: #020402;
   height: 80vh;

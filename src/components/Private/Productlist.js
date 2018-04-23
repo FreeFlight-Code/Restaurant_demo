@@ -23,6 +23,12 @@ class Productlist extends Component {
 
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            productName: nextProps
+        })
+    }
+
     componentDidMount() {
         this.setState({
             products: this.props.products
