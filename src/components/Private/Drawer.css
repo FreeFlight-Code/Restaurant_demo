@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-between;
     width: 250px;
-    background-color: #6F934C;
+    background-color: var(--primary-color);
     height: 100vh;
     padding: 50px 20px;
     box-sizing: border-box;
@@ -15,12 +15,6 @@
 img#logo{
 width:60%;
 margin: 0 auto;
-}
-
-div.rightSide{
-    width:50%;
-    float: right;
-    margin-right: 30px;
 }
 
 img.drawer{

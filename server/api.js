@@ -10,8 +10,9 @@ module.exports = {
     addProduct: function (req, res, next){
         let { name, description, price } = req.body;
         let db = req.app.get('db')
-        db.product([name, description, price]).then(product=>{
-            res.status(200).send(product)
+        db.addProduct([name, description, price]).then(product=>{
+            console.log('product added to database');
+            res.status(200).send(true);
         })
     },
 //read product

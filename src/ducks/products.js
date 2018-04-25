@@ -11,7 +11,7 @@ const ADD_PRODUCT = 'ADD_PRODUCT';
 
 // action creators
 export function getProducts() {
-    const products = axios.get('/api/allProducts').then( res => {
+    const products = axios.get('/api/allproducts').then( res => {
         return res.data
     })
     return {
@@ -21,19 +21,20 @@ export function getProducts() {
 }
 
 export function addProduct(obj) {
-    axios.post('/api/product', obj).then( res => {
-        if(res){
-        alert('item added')    
-        return {
-            type: ADD_PRODUCT,
-            payload: obj
-        }}
-        alert('unable to add item')
-    })
+    // axios.post('/api/product', obj).then( res => {
+    //     if(res){
+    //     alert('item added')    
+    //     return {
+    //         type: ADD_PRODUCT,
+    //         payload: obj
+    //     }}
+        alert('unable to add item', obj)
+    // })
 }
 
 // reducer function
 export default function productReducer(state = initialState, action) {
+    console.log('entered productReducer')
     switch (action.type) {
         case GET_PRODUCTS + '_FULFILLED':
             let obj =  Object.assign({}, state, {products: action.payload });
