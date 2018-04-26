@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Drawer from './Drawer';
 import { addProduct } from '../../ducks/products';
-import './AddProduct.css'
-// import axios from 'axios';
-
-
+import './SingleProduct.css'
 
 class AddProduct extends Component {
 
@@ -16,9 +13,11 @@ class AddProduct extends Component {
             description: "",
             price: ""
         }
-        // this.addProduct = this.addProduct.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.goToBrowsing = this.goToBrowsing.bind(this);
     }
+    //every keystroke in an input field is mapped to state
     handleChange (value, id){
         this.setState({
             [id]: value
@@ -26,50 +25,56 @@ class AddProduct extends Component {
         
         console.log(this.state)
     }
-    // addProduct() {
+    goToBrowsing(){
+        document.location.assign("#/browsing");
 
-        // console.log('entered addproduct')
-        // let newItem = this.state;
-        // axios.post('/api/product', newItem)
-        // .then((results)=>{
-        //     console.log('results from front end... ', results)
-        // })
-        // .catch((error)=>{
-        //     throw error;
-        // })
-    // }
+    }
+    //submit button clicked to add item to database
+    handleSubmit() {
+
+        let obj = {
+            name: this.state.name,
+            description: this.state.description,
+            price: this.state.price
+        }
+
+        this.setState({
+            name:"",
+            description:"",
+            price:""
+        })
+        addProduct(obj);
+    }
 
 render() {
     return (
         <div id='addProductContainer'>
-            < Drawer />
+        <div id="imageContainer">
+                    < Drawer />
 
-            <div className='rightSection'>
-                <h1>Add a Product</h1>
-                <div>Item Name</div>
-                <input onChange={(e)=>{this.handleChange(e.target.value, e.target.id)}} placeholder='Name' id='name' className='add item input' />
-                <div>Description</div>
-                <input onChange={(e)=>{this.handleChange(e.target.value, e.target.id)}} placeholder='Description' id='description' className='add item input' />
-                <div>Price</div>
-                <input onChange={(e)=>{this.handleChange(e.target.value, e.target.id)}} placeholder='Price' id='price' className='add item input' />
-            <button type='submit' onClick={addProduct}>Submit</button>
-            </div>
+                </div>
+                <div className="rightSide">
+                        <div id='displayProduct'>
+                            <div id='title'><div>New Item</div></div>
+                            <div id='yellowBox'>
+                                <div>
+                                    <div className='text name'>Name</div><input value={this.state.name} onChange={(e)=>{this.handleChange(e.target.value, e.target.id)}} placeholder='Name' id='name' className='add item input name'></input>
+                                </div>
+                                <div>
+                                    <div className='text price'>Price</div><input value={this.state.price} onChange={(e)=>{this.handleChange(e.target.value, e.target.id)}} placeholder='Price' id='price' className='add item input price' ></input>
+                                </div>
+                                <div>
+                                    <div className='text description'>Description</div><input value={this.state.description} onChange={(e)=>{this.handleChange(e.target.value, e.target.id)}} placeholder='Description' id='description' className='add item input description' ></input>
+                                </div>
+                                <button type='submit' onClick={this.handleSubmit}>Submit</button>
+                                <button  onClick={this.goToBrowsing}>Cancel</button>
+                            </div>
+                        </div>
+                </div>
         </div>
     );
 }
 }
 
-function mapStateToProps(state) {
-    // console.log(state, 'props')
-    return {
-        user: state.user,
-        products: state.products.products
-    }
-}
 
-const mapDispatchToProps = {
-    // getUserInfo, 
-    // getProducts
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
+export default connect()(AddProduct);

@@ -6,8 +6,9 @@
     /* color: red; */
 }
 
-h1{
+#addProductContainer h1{
     text-align: center;
+    margin-top: 0;
 }
 
 .rightSection{
@@ -29,7 +30,7 @@ h1{
 .rightSection>input {
     width: 100%;
     height: 2em;
-    margin-top: 1em;
+    margin-top: .2em;
     margin-bottom: 2em;
 }
 .rightSection>button{

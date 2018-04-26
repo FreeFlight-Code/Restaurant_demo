@@ -5,12 +5,15 @@
     align-items: center;
     justify-content: space-between;
     width: 250px;
-    background-color: var(--primary-color);
+    background-color: var(--c-green);
     height: 100vh;
     padding: 50px 20px;
     box-sizing: border-box;
     margin: 0;
     opacity: .92;
+}
+#drawerContainer{
+    height: fit-content;
 }
 img#logo{
 width:60%;
@@ -22,7 +25,5 @@ img.drawer{
     padding: 0;
     margin: 0;
     position: relative;
-    /* top: 20px; */
-    /* margin-left: 20px; */
     
 }

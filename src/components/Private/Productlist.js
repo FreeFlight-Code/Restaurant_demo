@@ -2,42 +2,27 @@ import React, { Component } from 'react';
 import './Productlist.css'
 
 import { connect } from 'react-redux';
-
-import icon from '../../images/burgerplate.jpg';
-import { getUserInfo } from './../../ducks/user';
 import { getProducts } from './../../ducks/products';
 
 
 class Productlist extends Component {
     constructor(props) {
         super(props);
-        // this.state={
-        //     products:[{name:"loading..."}]
-        // }
+        this.state={
+            products:[{name:"loading..."}]
+        }
         this.openProductDetails = this.openProductDetails.bind(this);
         this.openAddProduct = this.openAddProduct.bind(this);
     }
 
-    
-    componentWillMount() {
-        this.props.getProducts();
-
-    }
-
-    // componentWillReceiveProps(nextProps){
-    //     this.setState({
-    //         productName: nextProps
-    //     })
-    // }
-
     componentDidMount() {
+        const listOfItems = this.props.getProducts(); 
         this.setState({
-            products: this.props.products
+            products: listOfItems
         })
         
     }
     
-
     openProductDetails(e, id) {
         document.location.assign('#/product/' + id)
     }
@@ -48,43 +33,41 @@ class Productlist extends Component {
 
 
     render() {
-        console.log(this.props, 'props')
-        console.log(this.state, 'state')
+        // console.log(this.props, 'props')
+        // console.log(this.state, 'state')
         const Productlist = () => {
             if (this.props && this.props.products && this.props.products.length>0) {
                 return (this.props.products.map((el, i, a) => {
                     return <div
-                        className='product'
+                        className='productCard'
                         key={i}>
-                        <div><img src={icon} alt='' /></div>
-                        <p>{el.name}</p>
-                        <div>{el.description}</div>
-                        <button className='round-button' key={{ i } + 'button'} onClick={(e)=>{this.openProductDetails(e, el.id)}}>Details</button>
+                        {/* <div className='imageContainer'><img src="http://via.placeholder.com/200x150" alt='' /></div> */}
+                        <h3>{el.name}</h3>
+                        <button onClick={(e)=>{this.openProductDetails(e, el.id)}}>details</button>
+                        {/* <div>{el.description}</div> */}
                     </div>
                 }))
-            } else {
-                console.log('loading products...')
             }
         }
         return (
             <div id='yellowBackground'>
                 {Productlist()}
-                <button onClick={this.openAddProduct} className='round-button' id='add-button'>Add</button>
+                <button onClick={this.openAddProduct} className='round-button' id='add-button'>Add Item</button>
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    // console.log(state, 'props')
+    console.log(state, 'state')
     return {
-        user: state.user,
+
         products: state.products.products
     }
 }
 
 const mapDispatchToProps = {
-    getUserInfo, 
+
     getProducts
 }
 

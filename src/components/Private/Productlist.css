@@ -1,54 +1,62 @@
 
 #yellowBackground{
-    background-color: #E5B642;
+    background-color: var(--c-yellow);
     width: 70%;
-    max-height: 60vh;
-    margin: 7% 15% 0 15%;
+    max-height: 90vh;
+    margin: 2% 15% 0 15%;
     opacity: .74;
     display: grid;
     grid-template-columns: 1fr 1fr;
     overflow-y: scroll;
 
 }
-
-.product{
-    height: 300px;
-    width: 50%;
-    padding: 20px;
-    box-sizing: border-box;
-    position: relative;
-
-    
-}
-div.product{
-    width:100%;
-    padding: 35px;
-}
-.product img{
-    width: 50%;
+/* .productCard img{
+    width: 100%;
     margin: 0 auto;
 
+} */
+
+.productCard {
+    padding: 10% 5% 0% 5%;
+    position: relative;
 }
-img+p{
-    width: 50%;
+.productCard h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 100;
+    font-size: 2em;
+    margin: 0;
+    /* width: 80%; */
+    display: inline;
+    margin-right: 15px;
+    /* height: 30px; */
+}
+
+.productCard button {
     position: absolute;
-    right: 0;
-    top: 0;
-    margin-top:45px;
-    /* margin-left:45px; */
-    /* box-sizing: border-box; */
+    right: 5%;
+    height: 2.2em;
+    font-family: 'Pacifico', cursive;
+    font-weight: 700;
+    color: var(--c-red);
+    background-color: var(--c-green);
+    /* bottom: 50%; */
 }
 
 button.round-button{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 70px;
-    width:70px;
+    height: 80px;
+    width:80px;
     border-radius: 70px;
     margin: 45px;
 
 }
 #add-button{
-margin: 20vh 25vh;
+background-color: var(--c-red);
+position: absolute;
+bottom: 30px;
+right: 30px;
+font-size: 1.2em;
+opacity: 1;
+}
+#add-button:hover{
+    background-color: var(--c-green);    
 }
