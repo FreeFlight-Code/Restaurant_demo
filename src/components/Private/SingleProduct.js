@@ -1,31 +1,20 @@
 import React, { Component } from 'react';
 import Drawer from './Drawer';
 import { connect } from 'react-redux';
-import { getProducts } from './../../ducks/products';
+// import { getProducts } from './../../ducks/products';
 import { getProduct } from './../../ducks/products';
 import './SingleProduct.css';
 
 class SingleProduct extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            name: "",
-            description:"",
-            price:""
-        }
+
         this.addToCart = this.addToCart.bind(this);
         this.goToEdit = this.goToEdit.bind(this);
     }
     componentWillMount() {
-        getProducts();
-    }
-    componentDidMount(){
-        // console.log(this.props)
         let id = this.props.location.pathname.split('/').pop();
-        getProduct(id);
-    }
-    componentWillUpdate() {
-        console.log(this.props)
+        this.props.getProduct(id);
     }
 
     goToEdit(){
@@ -37,7 +26,7 @@ class SingleProduct extends Component {
     }
 
     render() {
-        console.log(this.props)
+        // console.log(this.props.products)
         return (
             <div id = 'singleProductContainer'>
                 <div id="imageContainer">
@@ -49,7 +38,7 @@ class SingleProduct extends Component {
                             <div id='title'><div>Details</div></div>
                             <div id='yellowBox'>
                                 <div>
-                                    <div className='text name'>Name</div><input className='input name' ></input>
+                                    {this.props && this.props.focusedItem && this.props.focusedItem.name ?this.props.focusedItem.name : "<div>David</div>"}
                                 </div>
                                 <div>
                                     <div className='text price'>Price</div><input className='input price' ></input>
@@ -67,14 +56,14 @@ class SingleProduct extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    // console.log(state, 'state')
-            products: state.products.products        
-})
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        focusedItem: state.products.focusedItem        
+    }
+}
 
 const mapDispatchToProps = {
-
-    getProducts,
     getProduct
 }
 

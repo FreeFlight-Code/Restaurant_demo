@@ -8,19 +8,12 @@ import { getProducts } from './../../ducks/products';
 class Productlist extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            products:[{name:"loading..."}]
-        }
         this.openProductDetails = this.openProductDetails.bind(this);
         this.openAddProduct = this.openAddProduct.bind(this);
     }
 
     componentDidMount() {
-        const listOfItems = this.props.getProducts(); 
-        this.setState({
-            products: listOfItems
-        })
-        
+        this.props.getProducts(); 
     }
     
     openProductDetails(e, id) {
@@ -33,8 +26,7 @@ class Productlist extends Component {
 
 
     render() {
-        // console.log(this.props, 'props')
-        // console.log(this.state, 'state')
+
         const Productlist = () => {
             if (this.props && this.props.products && this.props.products.length>0) {
                 return (this.props.products.map((el, i, a) => {

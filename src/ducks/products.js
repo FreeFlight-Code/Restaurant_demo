@@ -7,17 +7,39 @@ const initialState = {};
 const GET_PRODUCT = 'GET_PRODUCT';
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const ADD_PRODUCT = 'ADD_PRODUCT';
+// const EDIT_PRODUCT = 'EDIT_PRODUCT';
+const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 // action creators
 export function getProduct(id) {
     const product = axios.get('/api/product/' + id).then( res => {
-        return res.data
+        //returns object
+        return res.data[0];
     })
     return {
         type: GET_PRODUCT,
         payload: product
     }
 }
+export function deleteProduct(id) {
+    axios.delete('/api/product/' + id)
+    // .then(()=>{
+        console.log('for dad')
+        return {
+            type: DELETE_PRODUCT,
+            payload: id
+        }
+    // })
+}
+// export function editProduct(id) {
+//     const product = axios.get('/api/product/' + id).then( res => {
+//         return res.data
+//     })
+//     return {
+//         type: EDIT_PRODUCT,
+//         payload: product
+//     }
+// }
 export function getProducts() {
     const products = axios.get('/api/allproducts').then( res => {
         return res.data
@@ -44,20 +66,27 @@ export function addProduct(obj) {
 
 // reducer function
 export default function productReducer(state = initialState, action) {
-    // console.log('entered productReducer')
+    let newState = Object.assign({}, state);
+    console.log(action, 'action');
+    console.log(state, 'state');
     switch (action.type) {
+        case DELETE_PRODUCT + '_FULFILLED':
+        console.log(newState, 'before reducer')
+            newState = newState.products.splice();
+            console.log(newState, 'in reducer')
+            break;
         case GET_PRODUCTS + '_FULFILLED':
-            let obj =  Object.assign({}, state, {products: action.payload });
-            return obj;
+            newState.products = action.payload;
+            break;
         case GET_PRODUCT + '_FULFILLED':
-            let obj1 =  Object.assign({}, state, {products: action.payload });
-            return obj1;
+            newState.focusedItem = action.payload;
+            break;
         case ADD_PRODUCT + '_FULFILLED':
-            let newState = Object.assign({}, state);
             newState.products.push(action.type)
-            return newState;
+            break;
         default:
             return state;
     }
 
+    return newState;
 }
