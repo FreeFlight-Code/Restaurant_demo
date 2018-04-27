@@ -23,7 +23,7 @@ class AddProduct extends Component {
             [id]: value
         })
         
-        console.log(this.state)
+        // console.log(this.state)
     }
     goToBrowsing(){
         document.location.assign("#/browsing");

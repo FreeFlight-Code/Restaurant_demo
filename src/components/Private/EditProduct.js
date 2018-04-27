@@ -3,7 +3,9 @@ import Drawer from './Drawer';
 import { connect } from 'react-redux';
 import { getProduct } from './../../ducks/products';
 import { deleteProduct } from './../../ducks/products';
+import { editProduct } from './../../ducks/products';
 import './SingleProduct.css';
+import axios from 'axios';
 
 class EditProduct extends Component {
     constructor(props) {
@@ -13,7 +15,7 @@ class EditProduct extends Component {
             description: "",
             price: ""
         }
-        this.addToCart = this.addToCart.bind(this);
+        this.handleeditProduct = this.handleeditProduct.bind(this);
         this.goToProduct = this.goToProduct.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
     }
@@ -21,26 +23,41 @@ class EditProduct extends Component {
     componentWillMount() {
         let id = this.props.location.pathname.split('/').pop();
         this.props.getProduct(id);
+        if (!this.props.focusedItem) document.location.assign("#/browsing");
+    }
+
+    componentDidMount() {
+        // this.setState({
+        //     name: this.props.focusedItem.name,
+        //     price: this.props.focusedItem.price,
+        //     description: this.props.focusedItem.description
+        // })
     }
 
     goToProduct() {
-
-        let id = this.props.location.pathname.split('/').pop();
+        let id = this.props.focusedItem.id;
         document.location.assign("#/product/" + id);
 
     }
-    addToCart() {
-
+    handleeditProduct() {
+        let id = this.props.focusedItem.id;
+        let name = document.getElementById('name').value;
+        let price = document.getElementById('price').value;
+        let description = document.getElementById('description').value;
+        let obj = {id, name, price, description};
+        console.log(obj);
+        axios.put('/api/product/', obj)
+        // this.props.editProduct(obj);
+        document.location.assign("#/product/" + this.props.focusedItem.id);
     }
+
     deleteItem() {
         console.log(this.props)
         if (this.props.focusedItem) {
             let name = this.props.focusedItem.name;
             let yesNo = window.confirm(`Are you sure you want to delete ${name}`);
             if (yesNo) {
-                // let id = this.props.focusedItem.id;
-                let id = this.props.location.pathname.split('/').pop();
-                
+                let id = this.props.focusedItem.id;
                 this.props.deleteProduct(id);
                 document.location.assign("#/browsing");
             }
@@ -61,16 +78,15 @@ class EditProduct extends Component {
                         <div id='title'><div>Edit Item</div></div>
                         <div id='yellowBox'>
                             <div>
-                                {this.props && this.props.focusedItem && this.props.focusedItem.name ? this.props.focusedItem.name : "<div>David</div>"}
-                                <div className='text name'>Name</div><input className='input name' ></input>
+                                <input id='name' defaultValue={this.props.focusedItem.name} className='input name' ></input>
                             </div>
                             <div>
-                                <div className='text price'>Price</div><input className='input price' ></input>
+                            <input id='price' defaultValue={this.props.focusedItem.price} className='input price' ></input>
                             </div>
                             <div>
-                                <div className='text description'>Description</div><input className='input description' ></input>
+                            <input id='description' defaultValue={this.props.focusedItem.description} className='input description' ></input>
                             </div>
-                            <button onClick={this.addToCart}>Save</button>
+                            <button onClick={this.handleeditProduct}>Save</button>
                             <button onClick={this.deleteItem}>Delete</button>
                             <button onClick={this.goToProduct}>Cancel</button>
                         </div>
@@ -83,7 +99,6 @@ class EditProduct extends Component {
 
 
 const mapStateToProps = (state) => {
-    // console.log(state)
     return {
         focusedItem: state.products.focusedItem
     }
@@ -91,7 +106,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     getProduct,
-    deleteProduct
+    deleteProduct,
+    editProduct
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProduct);

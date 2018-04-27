@@ -8,13 +8,17 @@ import './SingleProduct.css';
 class SingleProduct extends Component {
     constructor(props) {
         super(props);
+        this.state={}
 
         this.addToCart = this.addToCart.bind(this);
         this.goToEdit = this.goToEdit.bind(this);
     }
     componentWillMount() {
         let id = this.props.location.pathname.split('/').pop();
-        this.props.getProduct(id);
+        this.setState({
+            product: this.props.getProduct(id)
+        })
+        if (!this.props.focusedItem) document.location.assign("#/browsing");
     }
 
     goToEdit(){
@@ -38,13 +42,13 @@ class SingleProduct extends Component {
                             <div id='title'><div>Details</div></div>
                             <div id='yellowBox'>
                                 <div>
-                                    {this.props && this.props.focusedItem && this.props.focusedItem.name ?this.props.focusedItem.name : "<div>David</div>"}
+                                    {this.props && this.props.focusedItem && this.props.focusedItem.name ?this.props.focusedItem.name : ""}
                                 </div>
                                 <div>
-                                    <div className='text price'>Price</div><input className='input price' ></input>
+                                {this.props && this.props.focusedItem && this.props.focusedItem.price ?this.props.focusedItem.price : ""}
                                 </div>
                                 <div>
-                                    <div className='text description'>Description</div><input className='input description' ></input>
+                                {this.props && this.props.focusedItem && this.props.focusedItem.description ?this.props.focusedItem.description : ""}
                                 </div>
                                 <button onClick={this.addToCart}>Add To Cart</button>
                                 <button onClick={this.goToEdit}>Edit</button>

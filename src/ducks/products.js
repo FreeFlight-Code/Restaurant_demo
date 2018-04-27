@@ -7,39 +7,10 @@ const initialState = {};
 const GET_PRODUCT = 'GET_PRODUCT';
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const ADD_PRODUCT = 'ADD_PRODUCT';
-// const EDIT_PRODUCT = 'EDIT_PRODUCT';
+const EDIT_PRODUCT = 'EDIT_PRODUCT';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 // action creators
-export function getProduct(id) {
-    const product = axios.get('/api/product/' + id).then( res => {
-        //returns object
-        return res.data[0];
-    })
-    return {
-        type: GET_PRODUCT,
-        payload: product
-    }
-}
-export function deleteProduct(id) {
-    axios.delete('/api/product/' + id)
-    // .then(()=>{
-        console.log('for dad')
-        return {
-            type: DELETE_PRODUCT,
-            payload: id
-        }
-    // })
-}
-// export function editProduct(id) {
-//     const product = axios.get('/api/product/' + id).then( res => {
-//         return res.data
-//     })
-//     return {
-//         type: EDIT_PRODUCT,
-//         payload: product
-//     }
-// }
 export function getProducts() {
     const products = axios.get('/api/allproducts').then( res => {
         return res.data
@@ -47,6 +18,16 @@ export function getProducts() {
     return {
         type: GET_PRODUCTS,
         payload: products
+    }
+}
+
+export function getProduct(id) {
+    const product = axios.get('/api/product/' + id).then( res => {
+        return res.data[0];
+    })
+    return {
+        type: GET_PRODUCT,
+        payload: product
     }
 }
 
@@ -64,26 +45,69 @@ export function addProduct(obj) {
     })
 }
 
+export function editProduct(obj) {
+    // console.log('hit action creator', obj)
+    axios.put('/api/product/', obj)
+    .then( _ => {
+        // console.log('returned from axios')
+        return {
+            type: EDIT_PRODUCT,
+            payload: obj
+        }
+    })
+    .catch(()=>{
+        console.log(`unable to update item id ${obj.name}`)
+    })
+    // return {
+    //     type: EDIT_PRODUCT,
+    //     payload: obj
+    // }
+}
+
+export function deleteProduct(id) {
+    axios.delete('/api/product/' + id)
+    // .then(()=>{
+    //     console.log('for dad')
+        return {
+            type: DELETE_PRODUCT,
+            payload: id
+        }
+// })
+}
+
+
 // reducer function
 export default function productReducer(state = initialState, action) {
     let newState = Object.assign({}, state);
-    console.log(action, 'action');
-    console.log(state, 'state');
     switch (action.type) {
-        case DELETE_PRODUCT + '_FULFILLED':
-        console.log(newState, 'before reducer')
-            newState = newState.products.splice();
-            console.log(newState, 'in reducer')
-            break;
+
         case GET_PRODUCTS + '_FULFILLED':
-            newState.products = action.payload;
-            break;
+        newState.products = action.payload;
+        break;
+
         case GET_PRODUCT + '_FULFILLED':
-            newState.focusedItem = action.payload;
-            break;
+        newState.focusedItem = action.payload;
+        break;
+
         case ADD_PRODUCT + '_FULFILLED':
-            newState.products.push(action.type)
+        newState.products.push(action.payload)
+        break;
+
+        case EDIT_PRODUCT + '_FULFILLED':
+        let index = newState.products.findIndex(el=>{
+            return el.id === action.payload.id;
+          })
+        newState = Object.assign([],[...newState.slice(0, index), action.payload,  ...newState.slice(index+1)]);
+        break;
+
+        case DELETE_PRODUCT + '_FULFILLED':
+        let id = action.payload;
+        index = newState.products.findIndex(el=>{
+            return el.id === 2;
+          });
+        newState = newState.splice(index, 1);
             break;
+
         default:
             return state;
     }
