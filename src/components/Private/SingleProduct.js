@@ -16,27 +16,28 @@ class SingleProduct extends Component {
         this.addToCart = this.addToCart.bind(this);
         this.goToEdit = this.goToEdit.bind(this);
     }
-
+    componentWillMount() {
+        getProducts();
+    }
     componentDidMount(){
-        console.log(this.props)
+        // console.log(this.props)
         let id = this.props.location.pathname.split('/').pop();
-        // console.log(id)
-        // this.props.getProduct(id);
+        getProduct(id);
     }
     componentWillUpdate() {
-
+        console.log(this.props)
     }
 
     goToEdit(){
         let id = this.props.location.pathname.split('/').pop();
         document.location.assign("#/edit/" + id);
-
     }
     addToCart(){
-
+        console.log('**simulation** product added to cart')
     }
 
     render() {
+        console.log(this.props)
         return (
             <div id = 'singleProductContainer'>
                 <div id="imageContainer">
@@ -66,13 +67,10 @@ class SingleProduct extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log(state, 'state')
-    return {
-
-        products: state.products.products
-    }
-}
+const mapStateToProps = (state) => ({
+    // console.log(state, 'state')
+            products: state.products.products        
+})
 
 const mapDispatchToProps = {
 
