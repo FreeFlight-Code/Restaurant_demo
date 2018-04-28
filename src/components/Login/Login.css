@@ -3,12 +3,13 @@
 .App {
 background-image: url('../../images/background.jpg');
 background-size: cover;
-height:92vh;
+height:100vh;
+width: 100vw;
 background-position: center; 
 background-repeat: no-repeat;
-padding: 8vh 8vh 0 8vh;
 color: #020402;
 font-family: 'Pacifico', cursive;
+
 }
 
 input:disabled {
@@ -16,17 +17,15 @@ input:disabled {
 }
 
 #loginContainer{
-  color: #020402;
-  height: 80vh;
-  width: 90vw;
-  /* max-width: 90vw; */
+  color: var(--c-white);
+  height: calc(100vh - 10%);
+  width: calc(100vw - 10%);
   background-color: #6F934C;
-  margin:0 auto;
+  margin: 5% auto;
   display: flex;
-  /* padding: 3%; */
   box-sizing: border-box;
-  opacity: .8;
-  box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, 0.555);
+  opacity: .9;
+  max-width: 580px;
 }
 
 #logoSection, #right{
@@ -36,49 +35,51 @@ input:disabled {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  font-size: 1.4em;
 }
 
-#logoSection h4{
-  font-size: 3em;
+#logoSection h4, #logoSection h2{
   margin: 0px;
   text-align: center;
+  color: var(--c-black);
 }
 #logoSection h2{
-  font-size: 5em;
   margin:0;
   text-align: center;
 }
 
 img {
   margin: 0px;
-  width: 60%;
-  margin-bottom: 50px;
+  width: 100%;
+  margin-bottom: 10%;
 }
 
 #right{
-  display: flex;
-  flex-direction: column;
-  border-left: 1px solid rgba(0, 0, 0, 0.39);
+  border-left: 1px solid rgba(0, 0, 0, 0.226);
 }
 #right div{
-  height: 50px;
-  width: 100%;
-  margin-bottom: 20px; 
-  font-size: 2em;
-  font-weight: 100;
   color:#020402
 }
 #right div>input{
-  width:70%;
+  width:100%;
   height: 40px;
 }
 #right button{
   height: 40px;
-  /* width: 100%; */
+  width: 100%;
   font-size: .8em;
-  margin:10px;
+  margin-top:20px;
   background-color: #E5B642;
   color: #AF3236;
   border-radius: 7px;
-  padding: 30px;
+  /* padding: 30px; */
+}
+
+@media screen and (min-width:510px){
+  #logoSection h2{
+    font-size: 3em;
+  }
+  #logoSection h4{
+    font-size: 1.5em;
+  }
 }

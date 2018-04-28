@@ -63,7 +63,7 @@ CSS FOR ADD PRODUCT ONLY
     background-color: rgb(112, 105, 3);
     color: white;
 }
-@media (max-width: 1000px){
+/* @media (max-width: 1000px){
     .rightSide{
         width:80%;
         background-color: var(--c-green);
@@ -97,6 +97,6 @@ CSS FOR ADD PRODUCT ONLY
     }
     #yellowBox input{
         display: inline;
-        /* width: 100%; */
+         width: 100%; 
     }
-}
+} */
