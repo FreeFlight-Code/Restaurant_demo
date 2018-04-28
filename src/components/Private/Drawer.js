@@ -10,27 +10,27 @@ class Drawer extends Component {
         return (
             <div id='drawer'>
 
-                <div id='drawContainer'>
-                    <img id='logo' className='drawer' src={logo} alt='logo'></img>
+                <div id='drawerContainer'>
+                    <img id='logo' src={logo} alt='logo'></img>
 
                     <a href='#/browsing'>
                         <div>
-                            <span>Menu</span>
+                            <span className="drawerText">Menu</span>
                             <img className='drawer' src={menu} alt='logo'></img>
                         </div>
                     </a>
 
                     <a href='#/cart' >
                         <div>
-                            <span>Cart</span>
+                            <span className="drawerText">Cart</span>
                             <img className='drawer' src={cart} alt='logo'></img>
                         </div>
                     </a>
                 </div>
                 <a href='http://localhost:3030/auth/logout'>
                     <div>
-                        <span>Logout</span>
-                        <img className='drawer' src={logout} alt='logo'></img>
+                        <span className="drawerText">Logout</span>
+                        <img id='logoutImage' className='drawer' src={logout} alt='logo'></img>
                     </div>
                 </a>
             </div>
