@@ -69,8 +69,8 @@ const api = require('./api.js');
 // product queries
 app.get('/api/allproducts', api.allProducts);
 app.get('/api/product/:id', api.product);
-app.put('/api/product', api.editProduct);
 app.post('/api/product', api.addProduct);
+app.put('/api/product', api.editProduct);
 app.delete('/api/product/:id', api.deleteProduct);
 //user queries
 
