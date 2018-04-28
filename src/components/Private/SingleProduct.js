@@ -44,10 +44,10 @@ class SingleProduct extends Component {
                         <div id='displayProduct'>
                             <div id='title'><div>Details</div></div>
                             <div id='yellowBox'>
-                                <div>
+                                <div id='productName'>
                                     {this.props && this.props.focusedItem && this.props.focusedItem.name ?this.props.focusedItem.name : ""}
                                 </div>
-                                <div>
+                                <div id='productPrice'>
                                 {this.props && this.props.focusedItem && this.props.focusedItem.price ? `$${price()}` : ""}
                                 </div>
                                 <div>
