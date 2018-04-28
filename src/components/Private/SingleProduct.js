@@ -30,7 +30,10 @@ class SingleProduct extends Component {
     }
 
     render() {
-        // console.log(this.props.products)
+        const price = ()=>{
+            let amount = this.props.focusedItem.price;
+            return amount.toFixed(2);
+        }
         return (
             <div id = 'singleProductContainer'>
                 <div id="imageContainer">
@@ -45,7 +48,7 @@ class SingleProduct extends Component {
                                     {this.props && this.props.focusedItem && this.props.focusedItem.name ?this.props.focusedItem.name : ""}
                                 </div>
                                 <div>
-                                {this.props && this.props.focusedItem && this.props.focusedItem.price ?this.props.focusedItem.price : ""}
+                                {this.props && this.props.focusedItem && this.props.focusedItem.price ? `$${price()}` : ""}
                                 </div>
                                 <div>
                                 {this.props && this.props.focusedItem && this.props.focusedItem.description ?this.props.focusedItem.description : ""}
@@ -61,7 +64,6 @@ class SingleProduct extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         focusedItem: state.products.focusedItem        
     }

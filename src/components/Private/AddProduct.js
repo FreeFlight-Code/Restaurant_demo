@@ -22,8 +22,6 @@ class AddProduct extends Component {
         this.setState({
             [id]: value
         })
-        
-        // console.log(this.state)
     }
     goToBrowsing(){
         document.location.assign("#/browsing");

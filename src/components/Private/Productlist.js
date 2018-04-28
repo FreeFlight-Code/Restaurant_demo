@@ -3,6 +3,7 @@ import './Productlist.css'
 
 import { connect } from 'react-redux';
 import { getProducts } from './../../ducks/products';
+import { getUserInfo } from './../../ducks/user';
 
 
 class Productlist extends Component {
@@ -14,6 +15,7 @@ class Productlist extends Component {
 
     componentDidMount() {
         this.props.getProducts(); 
+        this.props.getUserInfo(); 
     }
     
     openProductDetails(e, id) {
@@ -51,7 +53,6 @@ class Productlist extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state, 'state')
     return {
 
         products: state.products.products
@@ -60,7 +61,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
 
-    getProducts
+    getProducts,
+    getUserInfo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productlist);

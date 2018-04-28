@@ -12,7 +12,7 @@ const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 // action creators
 export function getProducts() {
-    const products = axios.get('/api/allproducts').then( res => {
+    const products = axios.get('/api/allproducts').then(res => {
         return res.data
     })
     return {
@@ -22,7 +22,7 @@ export function getProducts() {
 }
 
 export function getProduct(id) {
-    const product = axios.get('/api/product/' + id).then( res => {
+    const product = axios.get('/api/product/' + id).then(res => {
         return res.data[0];
     })
     return {
@@ -32,47 +32,48 @@ export function getProduct(id) {
 }
 
 export function addProduct(obj) {
-    console.log(obj)
-    axios.post('/api/product', obj).then( res => {
-        if(res){
-            console.log(res)
-        alert('item added')    
-        return {
-            type: ADD_PRODUCT,
-            payload: obj
-        }}
-        alert('unable to add item', obj)
-    })
+    axios.post('/api/product', obj)
+        .then(res => {
+            alert('item added')
+        })
+        .catch( err => {
+            alert('unable to add item', obj)
+        } );
+    return {
+        type: ADD_PRODUCT,
+        payload: obj
+    }
 }
 
 export function editProduct(obj) {
-    // console.log('hit action creator', obj)
     axios.put('/api/product/', obj)
-    .then( _ => {
-        // console.log('returned from axios')
-        return {
-            type: EDIT_PRODUCT,
-            payload: obj
-        }
-    })
-    .catch(()=>{
-        console.log(`unable to update item id ${obj.name}`)
-    })
-    // return {
-    //     type: EDIT_PRODUCT,
-    //     payload: obj
-    // }
+        .then(_ => {
+            console.log('item edited');
+        })
+        .catch(() => {
+            alert(`We're sorry but ${obj.name} was NOT able to be edited...`)
+        })
+    return {
+        type: EDIT_PRODUCT,
+        payload: obj
+    }
 }
 
 export function deleteProduct(id) {
     axios.delete('/api/product/' + id)
-    // .then(()=>{
-    //     console.log('for dad')
+        .then(() => {
+            console.log('item deleted from database')
+
+        })
+        .catch(() => {
+            alert(`error deleting last item to database`);
+            console.log(`item id...${id} not deleted from database`)
+
+        })
         return {
             type: DELETE_PRODUCT,
             payload: id
         }
-// })
 }
 
 
@@ -82,30 +83,34 @@ export default function productReducer(state = initialState, action) {
     switch (action.type) {
 
         case GET_PRODUCTS + '_FULFILLED':
-        newState.products = action.payload;
-        break;
+        //payload = array of objects
+            newState.products = action.payload;
+            break;
 
         case GET_PRODUCT + '_FULFILLED':
-        newState.focusedItem = action.payload;
-        break;
+        //payload = 1 obj
+            newState.focusedItem = action.payload;
+            break;
 
         case ADD_PRODUCT + '_FULFILLED':
-        newState.products.push(action.payload)
-        break;
+            //action.payload = edited object
+            newState.products.unshift(action.payload)
+            break;
 
         case EDIT_PRODUCT + '_FULFILLED':
-        let index = newState.products.findIndex(el=>{
-            return el.id === action.payload.id;
-          })
-        newState = Object.assign([],[...newState.slice(0, index), action.payload,  ...newState.slice(index+1)]);
-        break;
+        //action.payload = edited object
+            let index = newState.products.findIndex(el => {
+                return el.id === action.payload.id;
+            })
+            newState.products = Object.assign([], [...newState.products.slice(0, index), action.payload, ...newState.products.slice(index + 1)]);
+            break;
 
         case DELETE_PRODUCT + '_FULFILLED':
-        let id = action.payload;
-        index = newState.products.findIndex(el=>{
-            return el.id === 2;
-          });
-        newState = newState.splice(index, 1);
+            //payload = id
+            index = newState.products.findIndex(el => {
+                return el.id === action.payload;
+            });
+            newState.products = newState.products.splice(index, 1);
             break;
 
         default:

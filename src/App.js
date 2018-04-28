@@ -10,7 +10,6 @@ import EditProduct from './components/Private/EditProduct';
 
 export default class App extends Component {
   render() {
-    // console.log('this.props',this.props)
     return (
       <HashRouter>
         <Switch>

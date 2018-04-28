@@ -45,14 +45,11 @@ class EditProduct extends Component {
         let price = document.getElementById('price').value;
         let description = document.getElementById('description').value;
         let obj = {id, name, price, description};
-        console.log(obj);
         axios.put('/api/product/', obj)
-        // this.props.editProduct(obj);
         document.location.assign("#/product/" + this.props.focusedItem.id);
     }
 
     deleteItem() {
-        console.log(this.props)
         if (this.props.focusedItem) {
             let name = this.props.focusedItem.name;
             let yesNo = window.confirm(`Are you sure you want to delete ${name}`);
@@ -66,7 +63,6 @@ class EditProduct extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div id='editProductContainer'>
                 <div id="imageContainer">
