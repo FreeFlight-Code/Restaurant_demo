@@ -3,3 +3,26 @@
     height: 100%;
     /* background-color: red; */
 }
+#cartHolder{
+    width: 50%;
+    min-width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 20px;
+    margin-top: 10vh; 
+    border-radius: 10px;
+}
+#cartHolder>div{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px 0;
+}
+#cartHolder button{
+    width: 30%;
+    height: 60px;
+    min-width: 120px;
+    margin: 0 auto;
+    border-radius: 20px;
+}

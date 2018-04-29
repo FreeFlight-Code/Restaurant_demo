@@ -9,7 +9,13 @@ import './Cart.css';
 class Cart extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {cart: [
+            {name: 'initialized', quantity: 2, price: "2.3"},
+            {name: 'data', quantity: 4, price: "12.34"},
+            {name: 'hamburger', quantity: 6, price: "22.34"},
+            {name: 'hot dog', quantity: 1, price: "24"},
+            {name: 'oil caster', quantity: 5, price: "32.34"},
+        ]}
 
         this.updateMyCart = this.updateMyCart.bind(this);
     }
@@ -30,10 +36,10 @@ class Cart extends Component {
     }
 
     render() {
-        console.log(this.state)
+        console.log(this.props.cart)
         const cartContents = (()=>{
-            if (this.props && this.props.cart && this.props.cart.length > 0) {
-                return this.props.cart.map( (el, i, a) =>{
+            if (this.state && this.state.cart && this.state.cart.length > 0) {
+                return this.state.cart.map( (el, i, a) =>{
                     return (
                         <div key={`div${i}`}>
                             <span key={`span-name-${i}`}>{el.name}</span>
@@ -55,15 +61,18 @@ class Cart extends Component {
                 })
             }
             else {
-                <div>No items in cart</div>
+                //eslint-disable-next-line
+                return <div>No items in cart</div>
             }
-            // return (JSON.stringify(this.state.cart))
         })()
 
         return (
             <div id='CartContainer'>
-                {cartContents}
-                <button onClick={this.updateMyCart}>UPDATE</button>
+                <h1>Cart</h1>
+                <div id='cartHolder'>
+                    {cartContents}
+                    <button onClick={this.updateMyCart}>UPDATE</button>
+                </div>
             </div>
         );
     }
@@ -71,13 +80,11 @@ class Cart extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // user: state.user,
-        cart: state.cart
+        cart: state.cart.cart
     }
 }
 
 const mapDispatchToProps = {
-    // getUserInfo,
     getCart,
     updateCart
 }

@@ -14,6 +14,7 @@ const DELETE_CART = 'DELETE_CART';
 // action creators
 export function getCart() {
     const cart = axios.get('/api/getCart').then( res => {
+        console.log(res)
         return res.data
     })
     return {
@@ -31,7 +32,7 @@ export function addCart(id) {
     }
 }
 export function updateCart(obj) {
-    const cart = axios.post('/api/updateCart').then( res => {
+    const cart = axios.post('/api/updateCart', obj).then( res => {
         return res.data
     })
     return {

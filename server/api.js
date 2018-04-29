@@ -44,7 +44,7 @@ module.exports = {
         })
     },
     getCart: function (req, res, next){
-        let id = req.params.id;
+        let id = req.user.id;
         let db = req.app.get('db')
         db.getCart(id).then( res =>{
             res.status(200).send(res.data)
