@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Drawer from './Drawer';
 import { connect } from 'react-redux';
-// import { getProducts } from './../../ducks/products';
 import { getProduct } from './../../ducks/products';
 import './SingleProduct.css';
 

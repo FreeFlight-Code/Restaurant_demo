@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { getProduct } from './../../ducks/products';
 import './Drawer.css';
 import logo from '../../images/logo.svg'
 import menu from '../../images/menu.svg'
@@ -37,5 +39,6 @@ class Drawer extends Component {
         );
     }
 }
+
 
 export default Drawer;

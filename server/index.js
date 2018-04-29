@@ -73,8 +73,9 @@ app.post('/api/product', api.addProduct);
 app.put('/api/product', api.editProduct);
 app.delete('/api/product/:id', api.deleteProduct);
 //user queries
-
-
+//cartqueries
+app.get('/api/getCart', api.getCart);
+app.post('/api/updateCart', api.updateCart);
 
 
 
@@ -97,6 +98,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(obj, done) {
   app.get('db').find_session_user([obj.id])
   .then( user => {
+    // console.log(user)
     return done(null, user[0]);
   })
 });

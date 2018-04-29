@@ -6,6 +6,7 @@ import Browsing from './components/Private/Browsing';
 import SingleProduct from './components/Private/SingleProduct';
 import AddProduct from './components/Private/AddProduct';
 import EditProduct from './components/Private/EditProduct';
+import Cart from './components/Private/Cart';
 
 
 export default class App extends Component {
@@ -18,6 +19,7 @@ export default class App extends Component {
           <Route component={ SingleProduct } path='/product' />
           <Route component={ AddProduct } path='/add' />
           <Route component={ EditProduct } path='/edit' />
+          <Route component={ Cart } path='/cart' />
         </Switch>
       </HashRouter>  
     );
