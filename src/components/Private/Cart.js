@@ -36,10 +36,10 @@ class Cart extends Component {
     }
 
     render() {
-        console.log(this.props.cart)
+        // console.log(this.props.cart)
         const cartContents = (()=>{
-            if (this.state && this.state.cart && this.state.cart.length > 0) {
-                return this.state.cart.map( (el, i, a) =>{
+            if (this.props && this.props.cart && this.props.cart.length > 0) {
+                return this.props.cart.map( (el, i, a) =>{
                     return (
                         <div key={`div${i}`}>
                             <span key={`span-name-${i}`}>{el.name}</span>
@@ -79,8 +79,9 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        cart: state.cart.cart
+        cart: state.cart
     }
 }
 

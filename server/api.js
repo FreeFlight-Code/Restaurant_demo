@@ -45,22 +45,42 @@ module.exports = {
     },
     getCart: function (req, res, next){
         let id = req.user.id;
-        let db = req.app.get('db')
+        let db = req.app.get('db');
         db.getCart(id).then( res =>{
+            if (res.status && res.data){
             res.status(200).send(res.data)
-        }).catch((err)=>{
-            res.status(400).send(err)
+            }
+        }).then(()=>{
+            console.log('db error... sending mock data')
+            res.status(201).send([
+                {name: 'simulated', quantity: 2, price: "2.3"},
+                {name: 'backend', quantity: 4, price: "12.34"},
+                {name: 'data', quantity: 6, price: "22.34"},
+                {name: 'hot dog', quantity: 1, price: "24"},
+                {name: 'oil caster', quantity: 5, price: "32.34"},
+            ])
         })
+        .catch(err=>res.status(400).send(err))
     },
     updateCart: function (req, res, next){
-        let string = JSON.stringify(res.body);
+        console.log('update cart is all jacked up..........');
+        // let string = JSON.stringify(res.body);
         let db = req.app.get('db')
-        db.getCart(string).then( res =>{
-            // res.status(200).send(res.data)
-            res.status(200).send(true)
-        }).catch((err)=>{
-            res.status(400).send(err)
+        db.getCart([]).then( res =>{
+            if (res.status && res.data) {
+                res.status(200).send(res.data)
+            }
+        }).then(()=>{
+            console.log('db error... sending mock data')
+            res.status(201).send([
+                {name: 'simulated', quantity: 2, price: "2.3"},
+                {name: 'backend', quantity: 4, price: "12.34"},
+                {name: 'data', quantity: 6, price: "22.34"},
+                {name: 'hot dog', quantity: 1, price: "24"},
+                {name: 'oil caster', quantity: 5, price: "32.34"},
+            ])
         })
+        .catch(err=>res.status(400).send(err))
     },
   
 

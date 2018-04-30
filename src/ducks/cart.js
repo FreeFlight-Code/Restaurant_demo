@@ -14,7 +14,7 @@ const DELETE_CART = 'DELETE_CART';
 // action creators
 export function getCart() {
     const cart = axios.get('/api/getCart').then( res => {
-        console.log(res)
+        console.log(res, 'results from getCart')
         return res.data
     })
     return {
