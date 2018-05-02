@@ -3,7 +3,9 @@ import './Productlist.css'
 
 import { connect } from 'react-redux';
 import { getProducts } from './../../ducks/products';
-// import { getUserInfo } from './../../ducks/user';
+import { getProduct } from './../../ducks/products';
+import { getUserInfo } from './../../ducks/user';
+import { getCart } from './../../ducks/cart';
 
 
 class Productlist extends Component {
@@ -13,13 +15,22 @@ class Productlist extends Component {
         this.openAddProduct = this.openAddProduct.bind(this);
     }
 
+    componentWillMount() {
+        // this.props.getProducts(); 
+        // this.props.getUserInfo(); 
+        // this.props.getCart();
+    }
+
     componentDidMount() {
         this.props.getProducts(); 
-        // this.props.getUserInfo(); 
+        this.props.getUserInfo(); 
+        this.props.getCart(); 
     }
     
-    openProductDetails(e, id) {
-        document.location.assign('#/product/' + id)
+    openProductDetails(id) {
+        this.props.getProduct(id);
+        document.location.assign("#/product");
+
     }
     openAddProduct(){
         document.location.assign("#/add");
@@ -28,7 +39,6 @@ class Productlist extends Component {
 
 
     render() {
-
         const Productlist = () => {
             if (this.props && this.props.products && this.props.products.length>0) {
                 return (this.props.products.map((el, i, a) => {
@@ -37,7 +47,7 @@ class Productlist extends Component {
                         key={i}>
                         {/* <div className='imageContainer'><img src="http://via.placeholder.com/200x150" alt='' /></div> */}
                         <h3>{el.name}</h3>
-                        <button onClick={(e)=>{this.openProductDetails(e, el.id)}}>details</button>
+                        <button onClick={_=>{this.openProductDetails(el.id)}}>details</button>
                         {/* <div>{el.description}</div> */}
                     </div>
                 }))
@@ -53,8 +63,10 @@ class Productlist extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state, 'store')
     return {
-
+        user: state.user,
+        cart: state.cart,
         products: state.products.products
     }
 }
@@ -62,7 +74,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 
     getProducts,
-    // getUserInfo
+    getProduct,
+    getUserInfo,
+    getCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productlist);

@@ -13,16 +13,14 @@ class SingleProduct extends Component {
         this.goToEdit = this.goToEdit.bind(this);
     }
     componentWillMount() {
-        let id = this.props.location.pathname.split('/').pop();
-        this.setState({
-            product: this.props.getProduct(id)
-        })
+        // let id = this.props.focusedItem.id;
+        this.setState(this.props.focusedItem)
         if (!this.props.focusedItem) document.location.assign("#/browsing");
     }
 
     goToEdit(){
-        let id = this.props.location.pathname.split('/').pop();
-        document.location.assign("#/edit/" + id);
+        // let id = this.props.focusedItem.id;
+        document.location.assign("#/edit/");
     }
     addToCart(){
         console.log('**simulation** product added to cart')

@@ -2,77 +2,56 @@ import axios from 'axios';
 
 // Set up initial state
 const initialState = {
-    cart: {}
+    cart: 'initial state'
 };
 
 // action types
 const GET_CART = 'GET_CART';
-const ADD_CART = 'ADD_CART';
-const UPDATE_CART = 'UPDATE_CART';
-const DELETE_CART = 'DELETE_CART';
+const REPLACE_CART = 'REPLACE_CART';
 
 // action creators
 export function getCart() {
+    //results from backend is an object
     const cart = axios.get('/api/getCart').then( res => {
-        // console.log(res, 'results from getCart')
         return res.data
     })
-    // console.log('cart', cart)
     return {
         type: GET_CART,
         payload: cart
     }
 }
-export function addCart(id) {
-    const cart = axios.put('/api/addCart').then( res => {
+
+export function replaceCart(obj) {
+    const cart = axios.get('/api/getCart').then( res => {
         return res.data
     })
+    let newCart = Object.assign({}, cart, ...obj);
     return {
-        type: ADD_CART,
-        payload: cart
+        type: REPLACE_CART,
+        payload: newCart
     }
 }
-export function updateCart(obj) {
-    const cart = axios.post('/api/updateCart', obj).then( res => {
-        return res.data
-    })
-    return {
-        type: UPDATE_CART,
-        payload: cart
-    }
-}
-export function deleteCart(id) {
-    const cart = axios.delete('/api/deleteCart').then( res => {
-        return res.data
-    })
-    return {
-        type: DELETE_CART,
-        payload: cart
-    }
-}
+
 
 // reducer function
-export default function reducer(state = initialState, action) {
-    let newState = Object.assign({}, ...state)
+export default function cartReducer(state = initialState, action) {
+    let newState = Object.assign({}, state);
     switch (action.type) {
-        case GET_CART + '_FULFILLED':
-            newState = action.payload;
-            break;
-        case ADD_CART + '_FULFILLED':
-        console.log('*simulated add to cart*')
-            // newState = action.payload;
-            break;
-        case UPDATE_CART + '_FULFILLED':
-            newState = action.payload;
-            break;
-        case DELETE_CART + '_FULFILLED':
-        console.log('*simulated delete to cart*')
 
-            // newState = action.payload;
+        case GET_CART:
+        console.log('hit get cart action reducer')
+            //action.payload = edited object
+            newState = action.payload
             break;
+
+        case REPLACE_CART + '_FULFILLED':
+        //payload = 1 obj
+            newState = action.payload;
+            break;
+
         default:
             return state;
     }
-    return newState
 
+    return newState;
 }

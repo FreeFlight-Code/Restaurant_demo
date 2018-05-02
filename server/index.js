@@ -75,7 +75,7 @@ app.delete('/api/product/:id', api.deleteProduct);
 //user queries
 //cartqueries
 app.get('/api/getCart', api.getCart);
-app.post('/api/updateCart', api.updateCart);
+app.post('/api/replaceCart', api.replaceCart);
 
 
 

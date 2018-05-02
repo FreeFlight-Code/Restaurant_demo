@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { replaceCart } from './../../ducks/cart';
 import { getCart } from './../../ducks/cart';
-import { updateCart } from './../../ducks/cart';
 import './Cart.css';
 
 
@@ -9,42 +9,67 @@ import './Cart.css';
 class Cart extends Component {
     constructor(props) {
         super(props);
-        this.state = {cart: [
-            {name: 'initialized', quantity: 2, price: "2.3"},
-            {name: 'data', quantity: 4, price: "12.34"},
-            {name: 'hamburger', quantity: 6, price: "22.34"},
-            {name: 'hot dog', quantity: 1, price: "24"},
-            {name: 'oil caster', quantity: 5, price: "32.34"},
-        ]}
-
+        this.state = {cart: this.props.cart}
+        this.getTotalFromCart = this.getTotalFromCart.bind(this);
         this.updateMyCart = this.updateMyCart.bind(this);
+        this.money = this.money.bind(this);
     }
     componentWillMount() {
-        this.props.getCart();
+        if(!this.props.user.id){
+            document.location.assign('#/');
+        }
+    }
+
+    money (num){
+        num = Number(num);
+        return (`$${num.toFixed(2)}`);
+    }
+
+    getTotalFromCart () {
+        if (this.props.cart){
+            let totalCart = 0;
+            for (let i = 0; i < this.props.cart.length; i++){
+                totalCart += this.props.cart[i].price * this.props.cart[i].quantity;
+            }
+            return totalCart;
+        }
     }
 
     selectChange(e, i){
-        let cart = this.props.cart;
+        let cart = this.state.cart;
         cart[i].quantity = e.target.value;
+        if(e.target.value === "0"){
+            let answer = window.confirm('Do you want to delete this item?')
+            if(answer)cart.splice(i, 1);
+        }
         this.setState({
             cart
         })
     }
+
     updateMyCart(){
         let cart = this.state.cart;
-        this.props.updateCart(cart);
+        this.props.replaceCart(cart);
+        document.location.assign("#/browsing");
     }
 
     render() {
-        // console.log(this.props.cart)
+        console.log(this.props.cart, 'props.cart')
+        console.log(this.state, ' state cart')
         const cartContents = (()=>{
-            if (this.props && this.props.cart && this.props.cart.length > 0) {
-                return this.props.cart.map( (el, i, a) =>{
+            let data;
+            function multiply (a, b) {
+                return a * b
+            }
+            if (this.state.cart && this.state.cart.length > 0) data = this.state.cart;
+
+            if (data) {
+                return data.map( (el, i, a) =>{
                     return (
-                        <div key={`div${i}`}>
-                            <span key={`span-name-${i}`}>{el.name}</span>
-                            <span key={`span-price-${i}`}>{el.price}</span>
-                            <select key={`select-quantity-${i}`} id='' onChange={(e)=>{this.selectChange(e, i)}} defaultValue={el.quantity} name="quantity">
+                        <div className='item' key={`div${i}`}>
+                            <span className='name item' key={`span-name-${i}`}>{el.name}</span>
+                            <span className='price item' key={`span-price-${i}`}>{this.money(el.price)}</span>
+                            <select className='quantity item' key={`select-quantity-${i}`} id='' onChange={(e)=>{this.selectChange(e, i)}} defaultValue={el.quantity} name="quantity">
                                 <option value="0">0</option> 
                                 <option value="1">1</option> 
                                 <option value="2">2</option>
@@ -56,6 +81,7 @@ class Cart extends Component {
                                 <option value="8">8</option>
                                 <option value="9">9</option>
                             </select>
+                            <span key={`span-total-${i}`} className='total item' >{this.money(multiply(el.price, el.quantity))}</span>
                         </div>
                     )
                 })
@@ -71,6 +97,7 @@ class Cart extends Component {
                 <h1>Cart</h1>
                 <div id='cartHolder'>
                     {cartContents}
+                    <div>Total: {this.money(this.getTotalFromCart())}</div>
                     <button onClick={this.updateMyCart}>UPDATE</button>
                 </div>
             </div>
@@ -79,15 +106,16 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    console.log(state, 'store')
     return {
-        cart: state.cart
+        cart: state.cart,
+        user: state.user
     }
 }
 
 const mapDispatchToProps = {
-    getCart,
-    updateCart
+    replaceCart,
+    getCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
