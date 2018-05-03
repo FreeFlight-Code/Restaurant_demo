@@ -46,7 +46,7 @@ class EditProduct extends Component {
         let description = document.getElementById('description').value;
         let obj = {id, name, price, description};
         axios.put('/api/product/', obj)
-        document.location.assign("#/product/" + this.props.focusedItem.id);
+        document.location.assign("#/browsing");
     }
 
     deleteItem() {

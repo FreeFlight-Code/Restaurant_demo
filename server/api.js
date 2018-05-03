@@ -52,8 +52,8 @@ module.exports = {
         let db = req.app.get('db')
         db.getCart(id).then(cart=>{
             console.log(cart, 'cart from db')
-            //string coming from db need to covert to json object
             cart = [{name:"mockdatabase", quantity:"3", price:"4.34"},{name: 'data', quantity: 4, price: "12.34"}]
+            //cart going forward needs to be an array
             res.status(200).send(cart);
         })
         .catch(err=>console.log(err));
