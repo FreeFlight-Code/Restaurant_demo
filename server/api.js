@@ -51,19 +51,21 @@ module.exports = {
         if (req.user && req.user.id ) id = req.user.id;
         let db = req.app.get('db')
         db.getCart(id).then(cart=>{
-            console.log(cart, 'cart from db')
-            cart = [{name:"mockdatabase", quantity:"3", price:"4.34"},{name: 'data', quantity: 4, price: "12.34"}]
+            // console.log(cart, 'cart from db')
+            // cart = [{name:"mockdatabase", quantity:"3", price:"4.34"},{name: 'data', quantity: 4, price: "12.34"}]
             //cart going forward needs to be an array
-            res.status(200).send(cart);
+            let response = JSON.parse(cart)
+            res.status(200).send(response);
         })
         .catch(err=>console.log(err));
     },
 
     replaceCart: function (req, res, next){
         //object coming back, need to convert to string for db
-        const {user_id, cart} = req.body;
+        const {id, cart} = req.body;
+        cart = JSON.stringify(cart);
         let db = req.app.get('db')
-        db.replaceCart([user_id, cart]).then(cart=>{
+        db.replaceCart([id, cart]).then(cart=>{
             console.log(cart);
             res.status(200).send(cart);
         })
