@@ -20,21 +20,21 @@ export default class Login extends Component {
                         <h2>Good Eats</h2>
                     </div>
                     <div id='right'>
-                    <div>
+                    {/* <div>
                         <label for="username"></label>Username:
                         <input type="search" name="username" id="username" />
                     </div>
                     <div>
                         <label for="password">Password:</label>
                         <input type="search" name="Password" id="" />
-                    </div>
+                    </div> */}
                         <div>
-                            <a href={process.env.REACT_APP_LOGIN}>
+                            <a href='http://159.89.157.235/auth'>
                                 <button>Login</button>
                             </a>
-                            <a href={process.env.REACT_APP_LOGIN}>
+                            {/* <a href={process.env.REACT_APP_LOGIN}>
                                 <button disabled >Register</button>
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </div>
