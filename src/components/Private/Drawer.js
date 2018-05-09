@@ -29,7 +29,7 @@ class Drawer extends Component {
                         </div>
                     </a>
                 </div>
-                <a href='http://localhost:3030/auth/logout'>
+                <a href={process.env.REACT_APP_LOGOUT}>
                     <div>
                         <span className="drawerText">Logout</span>
                         <img id='logoutImage' className='drawer' src={logout} alt='logo'></img>

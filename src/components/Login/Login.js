@@ -29,10 +29,10 @@ export default class Login extends Component {
                         <input type="search" name="Password" id="" />
                     </div>
                         <div>
-                            <a href='http://localhost:3030/auth'>
+                            <a href={process.env.REACT_APP_LOGIN}>
                                 <button>Login</button>
                             </a>
-                            <a href='http://localhost:3030/auth'>
+                            <a href={process.env.REACT_APP_LOGIN}>
                                 <button disabled >Register</button>
                             </a>
                         </div>
