@@ -1,5 +1,5 @@
 require('dotenv').config();
-const host = 'localhost';
+const host = '159.89.157.235';
 
 const express = require('express')
     , bodyParser = require('body-parser')
