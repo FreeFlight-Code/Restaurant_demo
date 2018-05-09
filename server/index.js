@@ -88,8 +88,8 @@ app.post('/api/replaceCart', api.replaceCart);
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {
-  successRedirect: `http://${host}:3000/#/browsing`,
-  failureRedirect: `http://${host}:3000/#/`
+  successRedirect: `http://${host}/#/browsing`,
+  failureRedirect: `http://${host}/#/`
 }))
 
 passport.serializeUser(function(user, done) {
@@ -114,7 +114,7 @@ app.get('/auth/me', (req, res, next) => {
 
 app.get('/auth/logout', (req, res) => {
   req.logOut();
-  return res.redirect(302, `http://${host}:3000/#/`);
+  return res.redirect(302, `http://${host}/#/`);
 })
 
 let PORT = config.PORT;
