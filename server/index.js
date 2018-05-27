@@ -1,5 +1,5 @@
 require('dotenv').config();
-const host = '159.89.157.235';
+const host = process.env.BASE_URL;
 
 const express = require('express')
     , bodyParser = require('body-parser')
@@ -7,7 +7,6 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , massive = require('massive')
     , session = require('express-session')
-    , config = require('./config');
 
 const app = express();
 
@@ -117,7 +116,7 @@ app.get('/auth/logout', (req, res) => {
   return res.redirect(302, `http://${host}/#/`);
 })
 
-let PORT = config.PORT;
+let PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 })    
