@@ -19,14 +19,14 @@ export default class Login extends Component {
                         <h2>Good Eats</h2>
                     </div>
                     <div id='right'>
-                    <div>
+                    {/* <div>
                         <label for="username"></label>Username:
                         <input type="search" name="username" id="username" />
                     </div>
                     <div>
                         <label for="password">Password:</label>
                         <input type="search" name="Password" id="" />
-                    </div>
+                    </div> */}
                         <div>
                             <a href='http://localhost:3030/auth'>
                                 <button>Login</button>
