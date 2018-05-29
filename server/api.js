@@ -61,6 +61,7 @@ module.exports = {
 
     replaceCart: function (req, res, next){
         //object coming back, need to convert to string for db
+
         console.log('ln 64 api replaceCart')
         // const {user_id, cart} = req.body;
         // let db = req.app.get('db')
@@ -69,6 +70,7 @@ module.exports = {
         //     res.status(200).send(cart);
         // })
         // .catch(err=>console.log(err));
+
     },
   
 

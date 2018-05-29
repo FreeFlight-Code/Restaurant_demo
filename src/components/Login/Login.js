@@ -9,6 +9,7 @@ import './Login.css';
 //   });
 
 export default class Login extends Component {
+    
     render() {
         return (
             <div className='App'>
@@ -28,12 +29,12 @@ export default class Login extends Component {
                         <input type="search" name="Password" id="" />
                     </div> */}
                         <div>
-                            <a href='http://localhost:3030/auth'>
+                            <a href='http://159.89.157.235/auth'>
                                 <button>Login</button>
                             </a>
-                            <a href='http://localhost:3030/auth'>
+                            {/* <a href={process.env.REACT_APP_LOGIN}>
                                 <button disabled >Register</button>
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </div>

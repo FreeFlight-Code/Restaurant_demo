@@ -16,7 +16,7 @@ export default class App extends Component {
         <Switch>
           <Route component={ Login } path='/' exact />
           <Route component={ Browsing } path='/browsing' />
-          <Route component={ SingleProduct } path='/product' />
+          <Route component={ SingleProduct } path='/product/:id' />
           <Route component={ AddProduct } path='/add' />
           <Route component={ EditProduct } path='/edit' />
           <Route component={ Cart } path='/cart' />

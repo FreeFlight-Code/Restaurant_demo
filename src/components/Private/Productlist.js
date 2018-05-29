@@ -29,7 +29,7 @@ class Productlist extends Component {
     
     openProductDetails(id) {
         this.props.getProduct(id);
-        document.location.assign("#/product");
+        document.location.assign("#/product/" + id);
 
     }
     openAddProduct(){

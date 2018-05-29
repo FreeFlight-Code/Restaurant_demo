@@ -20,13 +20,14 @@ export function getCart() {
     }
 }
 
-export function replaceCart(obj) {
+export function replaceCart(id, obj) {
+    
     const cart = axios.get('/api/getCart').then( res => {
         return res.data
     })
-    let newCart = Object.assign([], cart, ...obj);
+    let newCart = Object.assign([], ...cart, ...obj);
     console.log(newCart, 'replaceobj')
-    axios.post('/api/replaceCart', newCart)
+    axios.post('/api/replaceCart', [id, newCart])
 
     return {
         type: REPLACE_CART,
