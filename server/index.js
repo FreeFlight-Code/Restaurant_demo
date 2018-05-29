@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(session({
-  secret: config.SECRET,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true
 }));
@@ -22,25 +22,26 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/../build'));
 
 massive({
-  host: config.DB_HOST,
-  port: config.DB_PORT,
-  database: config.DB_DATABASE,
-  user: config.DB_USER,
-  password: config.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   ssl: true
 }).then( db => {
   app.set('db', db);
 })
 
 passport.use(new Auth0Strategy({
-  domain: config.AUTH_DOMAIN,
-  clientID: config.AUTH_CLIENT_ID,
-  clientSecret: config.AUTH_CLIENT_SECRET,
-  callbackURL: config.AUTH_CALLBACK
+  domain: process.env.AUTH_DOMAIN,
+  clientID: process.env.AUTH_CLIENT_ID,
+  clientSecret: process.env.AUTH_CLIENT_SECRET,
+  callbackURL: process.env.AUTH_CALLBACK
 }, function(accessToken, refreshToken, extraParams, profile, done) {
-
+  
   const db = app.get('db');
-
+  
+  db.db_create();
   db.find_user([ profile.identities[0].user_id ])
   .then( user => {
    if ( user[0] ) {
@@ -116,37 +117,9 @@ app.get('/auth/logout', (req, res) => {
   return res.redirect(302, `http://${host}/#/`);
 })
 
-let PORT = process.env.PORT;
+let PORT = 3030;
+
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 })    
 
-
-//This is what the config file should look like
-
-// module.exports = {
-
-
-//   //input myself
-
-//   PORT: ,
-//   SESSION_SECRET: '',
-//   SECRET: '',
-
-
-//   //massive db info can host on heroku
-
-//   DB_HOST:'',
-//   DB_PORT:'',
-//   DB_DATABASE:'',
-//   DB_USER:"",
-//   DB_PASSWORD:"",
-
-
-//   //auth0 info
-
-//   AUTH_DOMAIN:'',
-//   AUTH_CLIENT_ID:'',
-//   AUTH_CLIENT_SECRET:'',
-//   AUTH_CALLBACK:''
-// };

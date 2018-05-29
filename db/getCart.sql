@@ -1,1 +1,1 @@
-select * from cart where user_id = $1;
+select * from carts where userid = $1;
