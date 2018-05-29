@@ -9,6 +9,7 @@ background-position: center;
 background-repeat: no-repeat;
 color: #020402;
 font-family: 'Pacifico', cursive;
+/* padding: 5%; */
 
 }
 
@@ -18,10 +19,10 @@ input:disabled {
 
 #loginContainer{
   color: var(--c-white);
-  height: calc(100vh - 10%);
+  height: 100vh;
   width: calc(100vw - 10%);
   background-color: #6F934C;
-  margin: 5% auto;
+  margin: 0 auto;
   display: flex;
   box-sizing: border-box;
   opacity: .9;

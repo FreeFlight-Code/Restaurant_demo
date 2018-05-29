@@ -45,29 +45,30 @@ module.exports = {
     },
     
     getCart: function (req, res, next){
-        console.log(req.user, 'user_getcart');
+        console.log(req.user, ' ln 48 api getCart');
         // let id = req.user.id;
-        let id = 1;
-        if (req.user && req.user.id ) id = req.user.id;
-        let db = req.app.get('db')
-        db.getCart(id).then(cart=>{
-            console.log(cart, 'cart from db')
-            cart = [{name:"mockdatabase", quantity:"3", price:"4.34"},{name: 'data', quantity: 4, price: "12.34"}]
-            //cart going forward needs to be an array
-            res.status(200).send(cart);
-        })
-        .catch(err=>console.log(err));
+        // let id = 1;
+        // if (req.user && req.user.id ) id = req.user.id;
+        // let db = req.app.get('db')
+        // db.getCart(id).then(cart=>{
+        //     console.log(cart, 'cart from db')
+        //     cart = [{name:"mockdatabase", quantity:"3", price:"4.34"},{name: 'data', quantity: 4, price: "12.34"}]
+        //     //cart going forward needs to be an array
+        //     res.status(200).send(cart);
+        // })
+        // .catch(err=>console.log(err));
     },
 
     replaceCart: function (req, res, next){
         //object coming back, need to convert to string for db
-        const {user_id, cart} = req.body;
-        let db = req.app.get('db')
-        db.replaceCart([user_id, cart]).then(cart=>{
-            console.log(cart);
-            res.status(200).send(cart);
-        })
-        .catch(err=>console.log(err));
+        console.log('ln 64 api replaceCart')
+        // const {user_id, cart} = req.body;
+        // let db = req.app.get('db')
+        // db.replaceCart([user_id, cart]).then(cart=>{
+        //     console.log(cart);
+        //     res.status(200).send(cart);
+        // })
+        // .catch(err=>console.log(err));
     },
   
 
