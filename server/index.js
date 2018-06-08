@@ -6,7 +6,6 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , massive = require('massive')
     , session = require('express-session')
-    // , config = require('./config');
 
 const app = express();
 
@@ -88,8 +87,8 @@ app.post('/api/replaceCart', api.replaceCart);
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {
-  successRedirect: 'http://localhost:3000/#/browsing',
-  failureRedirect: 'http://localhost:3000/#/'
+  successRedirect: `${process.env.LOCALHOST}/#/browsing`,
+  failureRedirect: `${process.env.LOCALHOST}/#/`
 }))
 
 passport.serializeUser(function(user, done) {
@@ -114,10 +113,10 @@ app.get('/auth/me', (req, res, next) => {
 
 app.get('/auth/logout', (req, res) => {
   req.logOut();
-  return res.redirect(302, 'http://localhost:3000/#/');
+  return res.redirect(302, `${process.env.LOCALHOST}/#/`);
 })
 
-let PORT = 3030;
+let PORT = process.env.MYPORT;
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 })    
