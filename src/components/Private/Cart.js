@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+    import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { replaceCart } from './../../ducks/cart';
 import { getCart } from './../../ducks/cart';
@@ -43,7 +43,7 @@ class Cart extends Component {
             if(answer)cart.splice(i, 1);
         }
         this.setState({
-            cart
+            cart: cart
         })
     }
 
@@ -55,8 +55,6 @@ class Cart extends Component {
     }
 
     render() {
-        console.log(this.props.cart, 'props.cart')
-        console.log(this.state, ' state cart')
         const cartContents = (()=>{
             let data;
             function multiply (a, b) {
@@ -71,8 +69,8 @@ class Cart extends Component {
                             <span className='name item' key={`span-name-${i}`}>{el.name}</span>
                             <span className='price item' key={`span-price-${i}`}>{this.money(el.price)}</span>
                             <select className='quantity item' key={`select-quantity-${i}`} id='' onChange={(e)=>{this.selectChange(e, i)}} defaultValue={el.quantity} name="quantity">
-                                <option value="0">0</option> 
-                                <option value="1">1</option> 
+                                <option value="0">0</option>
+                                <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -107,7 +105,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state, 'store')
+    console.log(state.cart, 'store')
     return {
         cart: state.cart,
         user: state.user

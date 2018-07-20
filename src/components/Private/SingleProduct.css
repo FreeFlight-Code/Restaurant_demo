@@ -6,7 +6,7 @@
         display: flex;
         box-sizing: border-box;
     }
-    
+
     .rightSide{
         /* box-sizing: border-box; */
         width:100%;
@@ -14,13 +14,13 @@
         background-color: var(--c-green);
         padding: 10% 2% 2% 2%;
     }
-    
+
     #productPrice{
         color: rgb(0, 71, 6);
         font-size: 25px;
     }
     #productName{
-        text-shadow: 10px 10px 30px black; 
+        text-shadow: 10px 10px 30px black;
         padding-top: 40px;
         font-size: 25px;
     }
@@ -33,7 +33,7 @@
         text-align: center;
         padding: 2%;
         /* box-sizing: border-box; */
-    
+
     }
     #yellowBox input{
         padding: 3px;
@@ -42,9 +42,9 @@
         margin: 5%;
         height: 1.5em;
     }
-    
+
     .rightSide button{
-    
+
         background-color: rgb(204, 140, 36);
         border: 2px solid rgba(57, 131, 57, 0.384);
         border-radius: .3em;
@@ -68,7 +68,7 @@
         }
         #productPrice{
             font-size: 50px;
-    
+
         }
         #yellowBox input{
             padding-left: 20px;
@@ -98,17 +98,17 @@
     .rightSide{
         width:80%;
         background-color: var(--c-green);
-        padding: 10% 10% 0 10%;
+        padding: 10% 10% 5% 10%;
     }
     #productName{
-        text-shadow: 10px 10px 30px black; 
+        text-shadow: 10px 10px 30px black;
     }
     #displayProduct{
-        
+
         font-size: 3em;
         display: flex;
         height: 80%;
-        
+
     }
     #title div{
         transform: rotate(-90deg);
@@ -122,7 +122,7 @@
         padding: 30px;
         background-color: var(--c-yellow);
         width: 100%;
-        height: 100%;
+        height: 110%;
         font-size: .8em;
         text-align: center;
     }
@@ -134,12 +134,11 @@
     }
     #yellowBox input{
         display: inline;
-        width: 100%;
         padding-left: 1rem;
     }
 
     .rightSide button{
-        height: max-content;
+        height: 50px;
         width:  50%;
         background-color: rgb(204, 140, 36);
         border: 2px solid rgba(57, 131, 57, 0.384);
@@ -151,11 +150,11 @@
         background-color: rgb(112, 105, 3);
         color: white;
     }
-    
+
 }
 
 
-@media screen and (min-width:1500px){
+@media screen and (min-width:1550px){
         #productName{
             font-size: 2em;
             text-shadow: 10px 10px 100px black;

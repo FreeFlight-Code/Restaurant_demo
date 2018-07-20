@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getProducts } from './../../ducks/products';
 import { getProduct } from './../../ducks/products';
 import { getUserInfo } from './../../ducks/user';
-import { getCart } from './../../ducks/cart';
+// import { getCart } from './../../ducks/cart';
 
 
 class Productlist extends Component {
@@ -15,18 +15,12 @@ class Productlist extends Component {
         this.openAddProduct = this.openAddProduct.bind(this);
     }
 
-    componentWillMount() {
-        // this.props.getProducts(); 
-        // this.props.getUserInfo(); 
+    componentDidMount() {
+        this.props.getProducts();
+        this.props.getUserInfo();
         // this.props.getCart();
     }
 
-    componentDidMount() {
-        this.props.getProducts(); 
-        this.props.getUserInfo(); 
-        this.props.getCart(); 
-    }
-    
     openProductDetails(id) {
         this.props.getProduct(id);
         document.location.assign("#/product/" + id);
@@ -39,6 +33,7 @@ class Productlist extends Component {
 
 
     render() {
+        // console.log(this.props)
         const Productlist = () => {
             if (this.props && this.props.products && this.props.products.length>0) {
                 return (this.props.products.map((el, i, a) => {
@@ -63,10 +58,10 @@ class Productlist extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state, 'store')
+    // console.log(state, 'store')
     return {
         user: state.user,
-        cart: state.cart,
+        // cart: state.cart,
         products: state.products.products
     }
 }
@@ -76,7 +71,7 @@ const mapDispatchToProps = {
     getProducts,
     getProduct,
     getUserInfo,
-    getCart
+    // getCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productlist);

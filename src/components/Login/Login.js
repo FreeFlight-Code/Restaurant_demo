@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../../images/logo.svg';
-import './Login.css'; 
+import './Login.css';
 
 
 // var MegaButton = document.registerElement('mega-button', {
@@ -29,7 +29,7 @@ export default class Login extends Component {
                         <input type="search" name="Password" id="" />
                     </div> */}
                         <div>
-                            <a href='http://159.89.157.235/auth'>
+                            <a href={'http://localhost:3030/auth'}>
                                 <button>Login</button>
                             </a>
                             {/* <a href={process.env.REACT_APP_LOGIN}>
