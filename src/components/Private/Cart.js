@@ -48,8 +48,9 @@ class Cart extends Component {
     }
 
     updateMyCart(){
+        let id = this.props.user.id;
         let cart = this.state.cart;
-        this.props.replaceCart(cart);
+        this.props.replaceCart(id, cart);
         document.location.assign("#/browsing");
     }
 

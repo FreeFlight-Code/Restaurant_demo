@@ -1,4 +1,5 @@
 require('dotenv').config();
+const host = process.env.BASE_URL;
 
 const express = require('express')
     , bodyParser = require('body-parser')
@@ -115,8 +116,8 @@ app.get('/auth/logout', (req, res) => {
   req.logOut();
   return res.redirect(302, `http://localhost:3000`);
 })
-
 let PORT = process.env.BE_PORT;
+
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 })
