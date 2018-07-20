@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getProduct } from './../../ducks/products';
 import { addItem } from './../../ducks/cart';
 import './SingleProduct.css';
+import axios from 'axios';
 
 class SingleProduct extends Component {
     constructor(props) {
@@ -14,10 +15,16 @@ class SingleProduct extends Component {
         this.goToEdit = this.goToEdit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
     }
-    componentWillMount() {
-        // let id = this.props.focusedItem.id;
-        this.setState(this.props.focusedItem)
-        if (!this.props.focusedItem) document.location.assign("#/browsing");
+    componentDidMount() {
+
+        //pulls Product ID from url
+        let id = this.props.match.params.id;
+        const results = axios.get('/api/product/' + id).then(res => {
+            return res.data[0];
+        })
+
+        this.setState(results)
+        // if (!this.props.focusedItem) document.location.assign("#/browsing");
     }
 
     handleCancel (){
