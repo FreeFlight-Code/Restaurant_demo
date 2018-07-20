@@ -22,19 +22,19 @@ class Drawer extends Component {
                         </div>
                     </a>
 
-                    <a href='#/cart' >
+                    {/* <a href='#/cart' >
                         <div>
                             <span className="drawerText">Cart</span>
                             <img className='drawer' src={cart} alt='logo'></img>
                         </div>
+                    </a> */}
+                </div>
+                <div>
+                    <a href='http://localhost:3030/auth/logout'>
+                        <span className="drawerText logout">Logout</span>
+                        <img id='logoutImage' className='drawer' src={logout} alt='logo'></img>
                     </a>
                 </div>
-                <a href='http://localhost:3030/auth/logout'>
-                    <div>
-                        <span className="drawerText">Logout</span>
-                        <img id='logoutImage' className='drawer' src={logout} alt='logo'></img>
-                    </div>
-                </a>
             </div>
         );
     }

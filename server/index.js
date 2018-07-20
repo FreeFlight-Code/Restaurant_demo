@@ -37,9 +37,9 @@ passport.use(new Auth0Strategy({
   clientSecret: process.env.AUTH_CLIENT_SECRET,
   callbackURL: process.env.AUTH_CALLBACK
 }, function(accessToken, refreshToken, extraParams, profile, done) {
-  
+
   const db = app.get('db');
-  
+
   db.db_create();
   db.find_user([ profile.identities[0].user_id ])
   .then( user => {
@@ -60,9 +60,9 @@ passport.use(new Auth0Strategy({
 
 }));
 /*******************************************************************************
- * 
+ *
  *      MY ENDPOINTS RESTFUL
- * 
+ *
  *******************************************************************************8*/
 const api = require('./api.js');
 
@@ -113,11 +113,10 @@ app.get('/auth/me', (req, res, next) => {
 
 app.get('/auth/logout', (req, res) => {
   req.logOut();
-  return res.redirect(302, `${process.env.LOCALHOST}/#/`);
+  return res.redirect(302, `http://localhost:3000`);
 })
 
-let PORT = process.env.MYPORT;
+let PORT = process.env.BE_PORT;
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
-})    
-
+})

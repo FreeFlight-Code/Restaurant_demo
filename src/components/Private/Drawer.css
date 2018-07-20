@@ -5,11 +5,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    align-items: start;
     width:35vw;
     min-width: 150px;
     max-width: 200px;
     background-color: var(--c-green);
-    height: 100%;
+    height: 100vh;
     padding: 50px 20px;
     box-sizing: border-box;
     margin: 0;
@@ -17,29 +18,45 @@
 }
 #drawerContainer{
     width: 100%;
+    /* height: 100vh; */
+}
+/* .drawerContainer img{
+    width: 20px;
+} */
+.drawer>div{
+    width: 100%;
 }
 .drawerText{
     display: none;
 }
-img#logo{
+/* img#logo{
     width: 100%;
-}
+} */
 img.drawer{
 width:50%;
-margin-left: 27%;
+position: relative;
+/* bottom: 60px; */
+left: 25%;
+
+/* margin-left: 27%; */
 }
 #logoutImage{
-    width: 50%;
+    width:30%;
     position: absolute;
     bottom: 60px;
-    left:0;
+    left: 35%;
+}
+
+.drawerText.logout{
+    position: relative;
+    left: 75%;
 }
 
 /* img.drawer{
     width: 60%;
     margin: 20px 20% 50px;
     position: relative;
-    
+
 } */
 
 @media screen and (min-width: 560px){

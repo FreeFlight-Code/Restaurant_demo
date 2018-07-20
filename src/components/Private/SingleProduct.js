@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Drawer from './Drawer';
 import { connect } from 'react-redux';
 import { getProduct } from './../../ducks/products';
+import { addItem } from './../../ducks/cart';
 import './SingleProduct.css';
 
 class SingleProduct extends Component {
@@ -11,6 +12,7 @@ class SingleProduct extends Component {
 
         this.addToCart = this.addToCart.bind(this);
         this.goToEdit = this.goToEdit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
     componentWillMount() {
         // let id = this.props.focusedItem.id;
@@ -18,12 +20,16 @@ class SingleProduct extends Component {
         if (!this.props.focusedItem) document.location.assign("#/browsing");
     }
 
+    handleCancel (){
+        document.location.assign("#/browsing")
+    }
+
     goToEdit(){
         // let id = this.props.focusedItem.id;
         document.location.assign("#/edit/");
     }
     addToCart(){
-        console.log('**simulation** product added to cart')
+        if(this.props.focusedItem)this.props.addItem(this.props.focusedItem);
     }
 
     render() {
@@ -50,8 +56,9 @@ class SingleProduct extends Component {
                                 <div>
                                 {this.props && this.props.focusedItem && this.props.focusedItem.description ?this.props.focusedItem.description : ""}
                                 </div>
-                                <button onClick={this.addToCart}>Add To Cart</button>
+                                {/* <button onClick={this.addToCart}>Add To Cart</button> */}
                                 <button onClick={this.goToEdit}>Edit</button>
+                                <button onClick={this.handleCancel}>Cancel</button>
                             </div>
                         </div>
                 </div>
@@ -62,12 +69,13 @@ class SingleProduct extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        focusedItem: state.products.focusedItem        
+        focusedItem: state.products.focusedItem
     }
 }
 
 const mapDispatchToProps = {
-    getProduct
+    getProduct,
+    addItem
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);

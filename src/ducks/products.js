@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 // Set up initial state
-const initialState = {};
+const initialState = {
+    products:[],
+    focusedItem: {}
+};
 
 // action types
 const GET_PRODUCT = 'GET_PRODUCT';
@@ -37,7 +40,7 @@ export function addProduct(obj) {
             alert('item added')
         })
         .catch( err => {
-            alert('unable to add item', obj)
+            alert('unable to add item', obj, err)
         } );
     return {
         type: ADD_PRODUCT,
