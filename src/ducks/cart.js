@@ -48,16 +48,16 @@ export function getCart() {
 
 
 export function replaceCart(obj) {
-    const cart = axios.get('/api/getCart').then(res => {
-        return res.data
-    })
-    let newCart = Object.assign([], ...cart, ...obj);
-    console.log(newCart, 'replaceobj')
-    axios.post('/api/replaceCart', [id, newCart])
-    return {
-        type: REPLACE_CART,
-        payload: newCart
-    }
+    // const cart = axios.get('/api/getCart').then(res => {
+    //     return res.data
+    // })
+    // let newCart = Object.assign([], ...cart, ...obj);
+    // console.log(newCart, 'replaceobj')
+    // axios.post('/api/replaceCart', [id, newCart])
+    // return {
+    //     type: REPLACE_CART,
+    //     payload: newCart
+    // }
 }
 
 
