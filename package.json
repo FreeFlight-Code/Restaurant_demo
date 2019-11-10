@@ -5,7 +5,7 @@
   "main": "./server/index",
   "homepage": "app.davidfisc.com/restaurant",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.19.0",
     "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "gh-pages": "^1.2.0",
-    "react-scripts": "1.0.10"
+    "react-scripts": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,5 +33,17 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "proxy": "http://localhost:3032"
+  "proxy": "http://localhost:3032",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
