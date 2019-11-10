@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "./server/index",
-  "homepage": "http://gitname.github.io/Restaurant_demo",
+  "homepage": "app.davidfisc.com/restaurant",
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
@@ -33,5 +33,5 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "proxy": "http://localhost:3030"
+  "proxy": "http://localhost:3032"
 }
