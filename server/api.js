@@ -9,6 +9,7 @@ module.exports = {
 //create product
     addProduct: function (req, res, next){
         let { name, description, price } = req.body;
+        price = Math.floor(price);
         let db = req.app.get('db')
         db.addProduct([name, description, price]).then(product=>{
             console.log('product added to database');

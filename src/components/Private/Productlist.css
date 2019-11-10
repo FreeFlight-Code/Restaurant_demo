@@ -53,20 +53,20 @@
     color: var(--c-yellow);
 }
 
-button.round-button{
-    height: 80px;
-    width:80px;
-    border-radius: 70px;
-    margin: 45px;
-
-}
 #add-button{
-background-color: var(--c-red);
-position: absolute;
-bottom: -40px;
-right: 30vw;
-font-size: 1.2em;
-opacity: 1;
+    box-sizing: border-box;
+    height: 80px;
+    width: calc(100% - 35vw);
+    min-width: calc(100% - 150px);
+    max-width: calc(100% - 200px);
+    /* border-radius: 70px; */
+    /* margin: 45px; */
+    background-color: var(--c-red);
+    position: absolute;
+    bottom: 0px;
+    /* right: 37vw; */
+    font-size: 1.2em;
+    opacity: 1;
 }
 #add-button:hover{
     background-color: var(--c-green);
@@ -88,10 +88,10 @@ opacity: 1;
         font-size: 2.6em;
     }
     #add-button{
-        background-color: var(--c-red);
-        position: absolute;
-        bottom: -40px;
-        right: 30vw;
+        min-width: 0;
+        max-width: 30%;
+        left: 46vw;
+        margin-bottom: 20px;
 
     }
 }
@@ -108,8 +108,8 @@ opacity: 1;
         grid-template-rows: minmax(100px, max-content) repeat(auto-fill, 100px)
     }
     #add-button{
-        bottom: -40px;
-        right: -40px;
+
+        left: 44vw;
     }
 }
 
@@ -124,10 +124,10 @@ opacity: 1;
     .productCard h3{
         font-size: 2.5em;
     }
-    #add-button{
+    /* #add-button{
         bottom: 0px;
         right: 0px;
         width:100px;
         height: 100px;
-    }
+    } */
 }
